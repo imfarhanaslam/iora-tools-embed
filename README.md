@@ -1,20 +1,38 @@
 # Liora Tools — Free, Ad-Free Client-Side Web Utilities
 
-**Liora Tools** ([lioratools.com](https://lioratools.com)) is a collection of lightweight, privacy-first browser utilities that run **100% client-side in browser memory** with zero server uploads, zero ads inside the tools, and zero sign-up walls across 6 languages.
+Open-source reference patterns and lightweight client-side utilities powering [Liora Tools](https://lioratools.com) — zero-backend browser tools running 100% locally in browser memory across 6 languages.
 
-## Featured Live Tools
+## Live Localized Implementations
 * **German Percentage Calculator:** [Prozentrechner](https://lioratools.com/de/prozentrechner)
 * **Turkish Percentage Calculator:** [Yüzde hesaplama](https://lioratools.com/tr/yuzde-hesaplama)
 * **Portuguese Percentage Calculator:** [Calculadora de porcentagem](https://lioratools.com/pt/calculadora-de-porcentagem)
 * **Spanish Case Converter:** [Cambiar mayúsculas a minúsculas](https://lioratools.com/es/cambiar-mayusculas-a-minusculas)
+* **Portuguese Coin Flipper:** [Cara ou coroa](https://lioratools.com/pt/cara-ou-coroa)
 
-## Free Auto-Resizing `<iframe>` Embeds
-Bloggers and educators can embed any tool without ads using our auto-resizing `/embed/` routes:
+---
 
-```html
-<iframe src="https://lioratools.com/embed/de/prozentrechner" title="Prozentrechner" style="width:100%;border:0;min-height:480px"></iframe>
-<p><a href="https://lioratools.com/de/prozentrechner">Prozentrechner</a></p>
-```
+## 1. Deterministic Comma & Dot Number Parser
 
-## Technical Guides & Articles
-* Read our localization and browser math breakdowns on Medium and Substack (add your two article URLs here so Google crawls them immediately).
+Standard `parseFloat()` fails in international applications due to varying decimal and thousands separators (e.g., `1.234,56` vs `1,234.56`). 
+
+### Core Logic & JavaScript Implementation
+The parser handles dual-separator prioritization (the last separator acts as the decimal point), single-separator thousands detection (3 trailing digits), and signed percentage delta calculations (`Math.abs(start)`). 
+
+To view or copy the complete `parseLocaleNumber` JavaScript function, refer to the full source implementation.
+
+---
+
+## 2. Safe Auto-Resizing `<iframe>` Embeds
+
+Embedded routes emit `liora-embed-height` postMessages validated against `event.source` to dynamically adjust frame heights safely without layout shifts. For the complete HTML/JS embed snippet, see the full repository documentation.
+
+---
+
+## 3. Cryptographically Fair Randomness
+
+Decision tools like [Cara ou coroa](https://lioratools.com/pt/cara-ou-coroa) utilize `window.crypto.getRandomValues()` to generate unbiased outcomes directly in tab memory. The complete `getFairCoinFlip()` function can be found in the source code.
+
+## License
+
+MIT License — free to use, inspect, and embed.
+
